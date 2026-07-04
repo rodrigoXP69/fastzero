@@ -54,3 +54,35 @@ def test_update_user(client):
         'username': 'bob',
         'email': 'bob@example.com',
     }
+
+
+def test_read_user(client):
+    response = client.get('/user/1')
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {
+        'id': 1,
+        'username': 'bob',
+        'email': 'bob@example.com',
+    }
+
+
+def test_delete_user(client):
+    response = client.delete('/user/1')
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {
+        'id': 1,
+        'username': 'bob',
+        'email': 'bob@example.com',
+    }
+
+
+def test_delete_nonexistent_user(client):
+    response = client.delete('/user/999')
+    assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response.json() == {'detail': 'Usuário não encontrado!'}
+
+
+def test_read_nonexistent_user(client):
+    response = client.get('/user/999')
+    assert response.status_code == HTTPStatus.NOT_FOUND
+    assert response.json() == {'detail': 'Usuário não encontrado!'}
