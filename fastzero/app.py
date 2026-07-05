@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from fastzero.schemas import Message, UserDB, UserList, UserPublic, UserSchema
 
 app = FastAPI(
-    title='FastZero', version='0.1.0', description='FastAPI Zero to Hero'
+    title='FastZero', version='0.1.0', description='Minimal FastAPI example'
 )
 
 database = []
